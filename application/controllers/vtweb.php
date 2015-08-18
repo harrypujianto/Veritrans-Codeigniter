@@ -128,7 +128,6 @@ class Vtweb extends CI_Controller {
 
 		//notification handler sample
 
-		/*
 		$transaction = $notif->transaction_status;
 		$type = $notif->payment_type;
 		$order_id = $notif->order_id;
@@ -159,7 +158,7 @@ class Vtweb extends CI_Controller {
 		  else if ($transaction == 'deny') {
 		  // TODO set payment status in merchant's database to 'Denied'
 		  echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
-		}*/
+		}
 
 	}
 }
