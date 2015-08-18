@@ -11,7 +11,7 @@ The following plugin is tested under following environment:
 
 ## Installation
 * Download the library and extract the .zip 
-* Merge all the files.
+* Merge all the files to your codeigniter directory
 
 ## Using Veritrans Library
 
@@ -51,7 +51,7 @@ public function vtweb_charge()
 ```
 
 #### Handle Notification Callback
-[here](https://github.com/harrypujianto/Veritrans-Codeigniter/blob/master/application/controllers/vtweb.php).
+You can see notification handler examples [here](https://github.com/harrypujianto/Veritrans-Codeigniter/blob/master/application/controllers/vtweb.php).
 ```php
 //you don't have to use the function name 'notification', it's just an example
 public function notificarion()
