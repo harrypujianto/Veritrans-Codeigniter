@@ -121,7 +121,9 @@ class Vtdirect extends CI_Controller {
 				echo "Status transaksi untuk order id ".$response->order_id.": ".$response->transaction_status;
 
 				echo "<h3>Detail transaksi:</h3>";
-				var_dump($response);
+				echo "<pre>";
+  				var_dump($response);
+  				echo "</pre>";
 			}
 			else if($response->transaction_status == "deny")
 			{
@@ -130,7 +132,9 @@ class Vtdirect extends CI_Controller {
 				echo "Status transaksi untuk order id ".$response->order_id.": ".$response->transaction_status;
 
 				echo "<h3>Detail transaksi:</h3>";
-				var_dump($response);
+				echo "<pre>";
+  				var_dump($response);
+  				echo "</pre>";
 			}
 			else if($response->transaction_status == "challenge")
 			{
@@ -139,7 +143,9 @@ class Vtdirect extends CI_Controller {
 				echo "Status transaksi untuk order id ".$response->order_id.": ".$response->transaction_status;
 
 				echo "<h3>Detail transaksi:</h3>";
-				var_dump($response);
+				echo "<pre>";
+  				var_dump($response);
+  				echo "</pre>";
 			}
 			else
 			{
@@ -148,7 +154,9 @@ class Vtdirect extends CI_Controller {
 				echo "Status message: [".$response->status_code."] ".$response->status_message;
 
 				echo "<h3>Response:</h3>";
-				var_dump($response);
+				echo "<pre>";
+  				var_dump($response);
+  				echo "</pre>";
 			}	
 		}
 	
