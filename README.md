@@ -95,9 +95,9 @@ public function notificarion()
 ```
 
 ### VT-Direct
-You can see VT-Direct form [here](https://github.com/harrypujianto/Veritrans-Codeigniter/blob/master/application/controllers/vtweb.php).
+You can see VT-Direct form [here](https://github.com/harrypujianto/Veritrans-Codeigniter/blob/master/application/views/checkout_with_3ds.php).
 
-you can see VT-Direct process [here](https://github.com/harrypujianto/Veritrans-Codeigniter/blob/master/application/views/checkout_with_3ds.php).
+you can see VT-Direct process [here](https://github.com/harrypujianto/Veritrans-Codeigniter/blob/master/application/controllers/vtdirect.php).
 
 #### Checkout Page
 
@@ -269,7 +269,7 @@ $shipping_address = array(
 $customer_details = array(
     'first_name'       => "Andri",
     'last_name'        => "Setiawan",
-    'email'            => "payment-api@veritrans.co.id",
+    'email'            => "andri@email.co",
     'phone'            => "081322311801",
     'billing_address'  => $billing_address,
     'shipping_address' => $shipping_address
