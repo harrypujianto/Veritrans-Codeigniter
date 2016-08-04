@@ -22,7 +22,7 @@ class Vtdirect extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
-        $params = array('server_key' => 'VT-server-UJ4uPuXhwiNXwhpQx5-S76U1', 'production' => false);
+        $params = array('server_key' => 'your_server_key', 'production' => false);
 		$this->load->library('veritrans');
 		$this->veritrans->config($params);
 		$this->load->helper('url');
