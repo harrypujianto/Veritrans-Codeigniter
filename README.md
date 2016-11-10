@@ -1,8 +1,13 @@
-Veritrans Codeigniter library
+Midtrans Codeigniter library
 =======================================================
-Veritrans :heart: CI!
+MIdtrans :heart: CI!
 
-This is the all new Codeigniter client library for Veritrans 2.0. Visit [https://www.veritrans.co.id](https://www.veritrans.co.id) for more information about the product and see documentation at [http://docs.veritrans.co.id](http://docs.veritrans.co.id) for more technical details.
+Veritrans now is Midtrans
+
+This is the all new Codeigniter client library for Veritrans 2.0. Visit [https://www.midtrans.com](https://www.veritrans.co.id) for more information about the product and see documentation at [http://docs.midtrans.com](http://docs.veritrans.co.id) for more technical details. 
+
+###What's new?
+SNAP! for technical info Visit [https://snap-docs.midtrans.com](https://snap-docs.midtrans.com)
 
 ### Requirements
 The following plugin is tested under following environment:
@@ -22,6 +27,14 @@ $params = array('server_key' => '<your server key>', 'production' => false);
 $this->load->library('veritrans');
 $this->veritrans->config($params);
 ```
+
+For SNAP
+```
+$params = array('server_key' => '<your server key>', 'production' => false);
+$this->load->library('midtrans');
+$this->midtrans->config($params);
+```
+
 
 ### VT-Web
 
