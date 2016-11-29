@@ -6,7 +6,7 @@ Veritrans now is Midtrans
 
 This is the all new Codeigniter client library for Veritrans 2.0. Visit [https://www.midtrans.com](https://www.veritrans.co.id) for more information about the product and see documentation at [http://docs.midtrans.com](http://docs.veritrans.co.id) for more technical details. 
 
-###What's new?
+### What's new?
 SNAP! for technical info Visit [https://snap-docs.midtrans.com](https://snap-docs.midtrans.com)
 
 ### Requirements
@@ -28,13 +28,164 @@ $this->load->library('veritrans');
 $this->veritrans->config($params);
 ```
 
-For SNAP
+### SNAP
+
+For more info please open dan read [snap docs](https://snap-docs.midtrans.com/)
+
+See the snap example [here](https://github.com/harrypujianto/Veritrans-Codeigniter/blob/master/application/controllers/snap.php)
+
+#### frontend requirement
+```
+<title>Checkout</title>
+  <head>
+    <script type="text/javascript"
+            src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key="<CLIENT-KEY>"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  </head>
+  <body>
+```
+Change `src="https://app.sandbox.midtrans.com/snap/snap.js"` into `src="https://app.midtrans.com/snap/snap.js"`
+
+#### initialize
 ```
 $params = array('server_key' => '<your server key>', 'production' => false);
 $this->load->library('midtrans');
 $this->midtrans->config($params);
 ```
+set ``production =>true`` for production environment.
 
+
+#### Get Snap Token
+
+When button is clicked, call an ajax to the server. Located on
+[here](https://github.com/harrypujianto/Veritrans-Codeigniter/blob/master/application/views/checkout_snap.php#L12-L26)
+```
+ <form id="payment-form" method="post" action="<?=site_url()?>/snap/finish">
+      <input type="hidden" name="result_type" id="result-type" value=""></div>
+      <input type="hidden" name="result_data" id="result-data" value=""></div>
+    </form>
+    
+    <button id="pay-button">Pay!</button>
+    <script type="text/javascript">
+  
+    $('#pay-button').click(function (event) {
+      event.preventDefault();
+      $(this).attr("disabled", "disabled");
+    
+    $.ajax({
+      url: '<?=site_url()?>/snap/token', //calling this function
+      cache: false,
+```
+Calling this [function](https://github.com/harrypujianto/Veritrans-Codeigniter/blob/master/application/controllers/snap.php#L36).
+```php
+public function token()
+    {
+		
+		// Required
+		$transaction_details = array(
+		  'order_id' => rand(),
+		  'gross_amount' => 94000, // no decimal allowed for creditcard
+		);
+
+		// Optional
+		$item1_details = array(
+		  'id' => 'a1',
+		  'price' => 18000,
+		  'quantity' => 3,
+		  'name' => "Apple"
+		);
+
+		// Optional
+		$item2_details = array(
+		  'id' => 'a2',
+		  'price' => 20000,
+		  'quantity' => 2,
+		  'name' => "Orange"
+		);
+
+		// Optional
+		$item_details = array ($item1_details, $item2_details);
+
+		// Optional
+		$billing_address = array(
+		  'first_name'    => "Andri",
+		  'last_name'     => "Litani",
+		  'address'       => "Mangga 20",
+		  'city'          => "Jakarta",
+		  'postal_code'   => "16602",
+		  'phone'         => "081122334455",
+		  'country_code'  => 'IDN'
+		);
+
+		// Optional
+		$shipping_address = array(
+		  'first_name'    => "Obet",
+		  'last_name'     => "Supriadi",
+		  'address'       => "Manggis 90",
+		  'city'          => "Jakarta",
+		  'postal_code'   => "16601",
+		  'phone'         => "08113366345",
+		  'country_code'  => 'IDN'
+		);
+
+		// Optional
+		$customer_details = array(
+		  'first_name'    => "Andri",
+		  'last_name'     => "Litani",
+		  'email'         => "andri@litani.com",
+		  'phone'         => "081122334455",
+		  'billing_address'  => $billing_address,
+		  'shipping_address' => $shipping_address
+		);
+
+		// Fill transaction details
+		$transaction = array(
+		  'transaction_details' => $transaction_details,
+		  'customer_details' => $customer_details,
+		  'item_details' => $item_details,
+		);
+		//error_log(json_encode($transaction));
+		$snapToken = $this->midtrans->getSnapToken($transaction);
+		error_log($snapToken);
+		echo $snapToken;
+    }
+```
+
+
+if succesfully get token then this script executed, to open snap on the screen
+```
+ success: function(data) {
+        //location = data;
+        console.log('token = '+data);
+        
+        var resultType = document.getElementById('result-type');
+        var resultData = document.getElementById('result-data');
+        function changeResult(type,data){
+          $("#result-type").val(type);
+          $("#result-data").val(JSON.stringify(data));
+          //resultType.innerHTML = type;
+          //resultData.innerHTML = JSON.stringify(data);
+        }
+        snap.pay(data, {
+...      
+```
+
+
+
+####Open 
+
+```
+<title>Checkout</title>
+  <head>
+    <script type="text/javascript"
+            src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key="<CLIENT-KEY>"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  </head>
+  <body>
+```
+Change `src="https://app.sandbox.midtrans.com/snap/snap.js"` into `src="https://app.midtrans.com/snap/snap.js"`
 
 ### VT-Web
 
@@ -387,7 +538,3 @@ var_dump($approve);
 $cancel = $this->veritrans->cancel($order_id);
 var_dump($cancel);
 ```
-
-
-
-

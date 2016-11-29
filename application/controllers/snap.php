@@ -22,7 +22,7 @@ class Snap extends CI_Controller {
 	public function __construct()
     {
         parent::__construct();
-        $params = array('server_key' => 'VT-server-UJ4uPuXhwiNXwhpQx5-S76U1', 'production' => false);
+        $params = array('server_key' => 'your_server_key', 'production' => false);
 		$this->load->library('midtrans');
 		$this->midtrans->config($params);
 		$this->load->helper('url');	
@@ -35,17 +35,8 @@ class Snap extends CI_Controller {
 
     public function token()
     {
-		// Uncomment for production environment
-		// Veritrans_Config::$isProduction = true;
-
-		// Uncomment to enable sanitization
-		// Veritrans_Config::$isSanitized = true;
-
-		// Uncomment to enable 3D-Secure
-		// Veritrans_Config::$is3ds = true;
-
+		
 		// Required
-		error_log('kepanggil dari ajax');
 		$transaction_details = array(
 		  'order_id' => rand(),
 		  'gross_amount' => 94000, // no decimal allowed for creditcard
