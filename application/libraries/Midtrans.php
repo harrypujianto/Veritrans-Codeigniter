@@ -21,8 +21,10 @@ class Midtrans {
    	*/
   	public static $curlOptions = array();	
 
-  	const SANDBOX_BASE_URL = 'https://app.sandbox.midtrans.com/snap/v1';
-  	const PRODUCTION_BASE_URL = 'ttps://app.midtrans.com/snap/v1';
+  	const SANDBOX_BASE_URL = 'https://api.sandbox.veritrans.co.id/v2';
+    const PRODUCTION_BASE_URL = 'https://api.veritrans.co.id/v2';
+    const SNAP_SANDBOX_BASE_URL = 'https://app.sandbox.midtrans.com/snap/v1';
+    const SNAP_PRODUCTION_BASE_URL = 'https://app.midtrans.com/snap/v1';
 
     public function config($params)
     {
@@ -38,6 +40,15 @@ class Midtrans {
     	return Midtrans::$isProduction ?
         	Midtrans::PRODUCTION_BASE_URL : Midtrans::SANDBOX_BASE_URL;
   	}
+
+    /**
+    * @return string Veritrans API URL, depends on $isProduction
+    */
+    public static function getSnapBaseUrl()
+    {
+      return Midtrans::$isProduction ?
+          Midtrans::SNAP_PRODUCTION_BASE_URL : Midtrans::SNAP_SANDBOX_BASE_URL;
+    }
 
 	/**
 	 * Send GET request
@@ -135,7 +146,7 @@ class Midtrans {
   {
     
     $result = Midtrans::post(
-        Midtrans::getBaseUrl() . '/transactions',
+        Midtrans::getSnapBaseUrl() . '/transactions',
         Midtrans::$serverKey,
         $params);
 
