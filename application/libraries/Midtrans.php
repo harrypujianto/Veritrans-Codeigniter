@@ -92,7 +92,7 @@ class Midtrans {
 	        'Authorization: Basic ' . base64_encode($server_key . ':')
 	      ),
 	      CURLOPT_RETURNTRANSFER => 1,
-	      CURLOPT_CAINFO => dirname(__FILE__) . "/veritrans/cacert.pem"
+	      // CURLOPT_CAINFO => dirname(__FILE__) . "/veritrans/cacert.pem"
 	    );
 
 	    // merging with Veritrans_Config::$curlOptions
